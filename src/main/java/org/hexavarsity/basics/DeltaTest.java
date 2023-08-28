@@ -1,4 +1,4 @@
-package org.hexavarsity;
+package org.hexavarsity.basics;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

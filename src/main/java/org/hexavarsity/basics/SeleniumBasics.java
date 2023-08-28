@@ -1,4 +1,4 @@
-package org.hexavarsity;
+package org.hexavarsity.basics;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
