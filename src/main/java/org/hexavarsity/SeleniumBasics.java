@@ -2,23 +2,28 @@ package org.hexavarsity;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SeleniumBasics {
 
     static WebDriver driver;
+    static WebDriverWait wdw;
 
     public static void main(String[] args) throws Exception {
 
         try {
             driver = new ChromeDriver();
+            wdw = new WebDriverWait(driver, Duration.ofSeconds(2));
 
             driver.get("http://www.google.com");
 
         } catch (WebDriverException wde) {
             throw new Exception(wde.getMessage());
         }
-
-        Thread.sleep(10000);
 
         // Common driver actions
         System.out.printf("Current URL: %s\n", driver.getCurrentUrl());
@@ -28,6 +33,12 @@ public class SeleniumBasics {
         WebElement searchInput = driver.findElement(By.name("q"));
         searchInput.sendKeys("Hexaware", Keys.ENTER);
 
+        WebElement link = driver.findElement(By.partialLinkText("Hexaware Technologies | "));
+        wdw.until(ExpectedConditions.visibilityOf(link)).click();
+
+        assertEquals("https://hexaware.com", driver.getCurrentUrl());
+
+        driver.quit();
 
     }
 
